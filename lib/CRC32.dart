@@ -6,8 +6,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  */
 
-
-#library('CRC32.dart');
+library crc32;
 
 /**
  * Computes cyclic redundancy check values.

@@ -1,4 +1,4 @@
-#import('../lib/CRC32.dart');
+import '../lib/crc32.dart';
 
 void main() {
   print(CRC32.compute("testing out"));
