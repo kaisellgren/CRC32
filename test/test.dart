@@ -1,7 +1,7 @@
 import '../lib/crc32.dart';
 
 void main() {
-  print(CRC32.compute("testing out"));
+  print(CRC32.compute("testing out".charCodes()));
 
   // 12dde827
   // 316532775
