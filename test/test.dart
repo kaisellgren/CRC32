@@ -1,8 +1,9 @@
-import '../lib/crc32.dart';
+import 'package:unittest/unittest.dart';
+import 'package:crc32/crc32.dart';
 
 void main() {
-  print(CRC32.compute("testing out".charCodes()));
 
-  // 12dde827
-  // 316532775
+  test('basic', () {
+    expect(CRC32.compute("testing out".charCodes()), 316532775);
+  });
 }

@@ -3,3 +3,6 @@ version: 0.1.0
 description: A cyclic redundancy check calculator for Dart written in pure Dart.
 author: Kai Sellgren <kaisellgren@gmail.com>
 homepage: http://github.com/kaisellgren/CRC32
+dependencies:
+  unittest:
+    sdk: unittest
