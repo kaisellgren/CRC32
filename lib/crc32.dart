@@ -72,7 +72,7 @@ class CRC32 {
     crc = crc ^ (-1);
 
     for (var i = 0, length = input.length; i < length; i++) {
-      var x = CRC32._table[(crc ^ input.charCodeAt(i)) & 0xFF];
+      var x = CRC32._table[(crc ^ input.codeUnitAt(i)) & 0xFF];
 
       crc = (crc & 0xffffffff) >> 8; // crc >>> 8 (32-bit unsigned integer)
 
