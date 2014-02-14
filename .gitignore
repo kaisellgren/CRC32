@@ -1,4 +1,4 @@
 /.idea/
 /.project
 /pubspec.lock
-packages/
+packages

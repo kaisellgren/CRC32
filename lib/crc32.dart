@@ -65,7 +65,7 @@ class CRC32 {
    *
    * You may optionally specify the beginning CRC value.
    */
-  static int compute(var input, [num crc = 0]) {
+  static int compute(var input, [int crc = 0]) {
     if (input is List<int>)
       input = new String.fromCharCodes(input);
 
