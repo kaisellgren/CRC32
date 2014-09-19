@@ -1,9 +1,9 @@
 name: crc32
-version: 0.1.5
+version: 0.1.6
 description: A cyclic redundancy check calculator for Dart written in pure Dart.
 author: Kai Sellgren <kaisellgren@gmail.com>
 homepage: http://github.com/kaisellgren/CRC32
 environment:
-  sdk: '>=0.8.10+6 <2.0.0'
-dependencies:
-  unittest: '>=0.9.0 < 0.10.0'
+  sdk: '>=1.0.0 <2.0.0'
+dev_dependencies:
+  unittest: '>=0.11.0 < 0.12.0'
