@@ -1,5 +1,7 @@
-/.idea/
-/.project
+.idea/
+.project
 /pubspec.lock
-packages
-/doc/api/
+.packages
+**/packages/
+doc/api/
+.pub/
