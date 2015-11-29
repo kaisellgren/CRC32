@@ -1,31 +1,24 @@
-/*!
- * CRC32
- *
- * Copyright (C) 2012, Kai Sellgren
- * Licensed under the MIT License.
- * http://www.opensource.org/licenses/mit-license.php
- */
-
+/// CRC32
+/// Copyright (C) 2012, Kai Sellgren
+/// Licensed under the MIT License.
+/// http://www.opensource.org/licenses/mit-license.php
 library crc32;
 
-/**
- * Computes cyclic redundancy check values.
- */
+/// Computes Cyclic Redundancy Check values.
 class CRC32 {
-  /**
-   * Computes a CRC32 value for the given input.
-   *
-   * The return value is an unsigned integer.
-   *
-   * You may optionally specify the beginning CRC value.
-   */
+  /// Computes a CRC32 value for the given input.
+  ///
+  /// The return value is an unsigned integer.
+  ///
+  /// You may optionally specify the beginning CRC value.
   static int compute(var input, [int crc = 0]) {
     if (input is List<int>) input = new String.fromCharCodes(input);
+    if (crc == null) crc = 0;
 
     crc = crc ^ (-1);
 
     for (var i = 0, length = input.length; i < length; i++) {
-      var x = CRC32._table[(crc ^ input.codeUnitAt(i)) & 0xFF];
+      var x = CRC32._table[(crc ^ input.codeUnitAt(i)) & 0xff];
 
       crc = (crc & 0xffffffff) >> 8; // crc >>> 8 (32-bit unsigned integer)
 
@@ -42,7 +35,7 @@ class CRC32 {
     return crc;
   }
 
-  static final List<int> _table = const [
+  static const _table = const [
     0x00000000,
     0x77073096,
     0xEE0E612C,
