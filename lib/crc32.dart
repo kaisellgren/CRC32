@@ -4,6 +4,8 @@
 /// http://www.opensource.org/licenses/mit-license.php
 library crc32;
 
+import 'dart:convert';
+
 /// Computes Cyclic Redundancy Check values.
 class CRC32 {
   /// Computes a CRC32 value for the given input.
@@ -12,27 +14,25 @@ class CRC32 {
   ///
   /// You may optionally specify the beginning CRC value.
   static int compute(var input, [int crc = 0]) {
-    if (input is List<int>) input = new String.fromCharCodes(input);
+    if (input == null) throw new ArgumentError.notNull('input');
+    if (input is String) input = UTF8.encode(input);
     if (crc == null) crc = 0;
 
-    crc = crc ^ (-1);
+    crc = crc ^ (0xffffffff);
 
-    for (var i = 0, length = input.length; i < length; i++) {
-      var x = CRC32._table[(crc ^ input.codeUnitAt(i)) & 0xff];
+    for (var byte in input) {
+      if (!(byte >= -128 && byte <= 255)) throw new FormatException(
+          "Invalid value in input: $byte");
 
+      var x = CRC32._table[(crc ^ byte) & 0xff];
       crc = (crc & 0xffffffff) >> 8; // crc >>> 8 (32-bit unsigned integer)
-
       crc ^= x;
     }
 
-    crc = crc ^ (-1);
+    crc = crc ^ (0xffffffff);
 
     // Turns the signed integer into an unsigned integer.
-    if (crc < 0) {
-      crc += 4294967296;
-    }
-
-    return crc;
+    return crc & 0xffffffff;
   }
 
   static const _table = const [
