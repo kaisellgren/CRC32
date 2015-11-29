@@ -2,3 +2,4 @@
 /.project
 /pubspec.lock
 packages
+/doc/api/
