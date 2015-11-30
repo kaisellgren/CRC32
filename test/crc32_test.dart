@@ -30,13 +30,23 @@ void main() {
     test('simple', () {
       expect(CRC32.compute('hello'.codeUnits).toRadixString(16), '3610a686');
     });
-  });
 
-  /* Doesn't work yet
-  group("Exceptions", () {
-    test('null input', () {
-      expect(CRC32.compute(null), throwsArgumentError);
+    test('boundaries', () {
+      expect(CRC32.compute(<int>[-127, 0, 255]), 850675496);
     });
   });
-  */
+
+  group("Exceptions", () {
+    test('null input', () {
+      expect(() => CRC32.compute(null), throwsArgumentError);
+    });
+
+    test('256', () {
+      expect(() => CRC32.compute(<int>[256]), throwsFormatException);
+    });
+
+    test('-129', () {
+      expect(() => CRC32.compute(<int>[-129]), throwsFormatException);
+    });
+  });
 }
