@@ -5,3 +5,4 @@
 **/packages/
 doc/api/
 .pub/
+*.iml
