@@ -4,7 +4,7 @@
 /// http://www.opensource.org/licenses/mit-license.php
 library crc32;
 
-import 'dart:convert';
+import 'package:dart2_constant/convert.dart' as convert;
 
 /// Computes Cyclic Redundancy Check values.
 class CRC32 {
@@ -15,7 +15,7 @@ class CRC32 {
   /// You may optionally specify the beginning CRC value.
   static int compute(var input, [int crc = 0]) {
     if (input == null) throw new ArgumentError.notNull('input');
-    if (input is String) input = UTF8.encode(input);
+    if (input is String) input = convert.utf8.encode(input);
     if (crc == null) crc = 0;
 
     crc = crc ^ (0xffffffff);
