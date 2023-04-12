@@ -19,8 +19,9 @@ class CRC32 {
     crc = crc ^ (0xffffffff);
 
     for (final byte in bytes) {
-      if (!(byte >= -128 && byte <= 255)) throw new FormatException(
-          'Invalid value in input: $byte');
+      if (!(byte >= -128 && byte <= 255)) {
+        throw FormatException('Invalid value in input: $byte');
+      }
 
       var x = CRC32._table[(crc ^ byte) & 0xff];
       crc = (crc & 0xffffffff) >> 8; // crc >>> 8 (32-bit unsigned integer)
@@ -33,7 +34,7 @@ class CRC32 {
     return crc & 0xffffffff;
   }
 
-  static const _table = const [
+  static const _table = [
     0x00000000,
     0x77073096,
     0xEE0E612C,
