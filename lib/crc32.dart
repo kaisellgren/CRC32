@@ -8,21 +8,19 @@ import 'dart:convert';
 
 /// Computes Cyclic Redundancy Check values.
 class CRC32 {
+  static int computeString(String input) => compute(utf8.encode(input));
+
   /// Computes a CRC32 value for the given input.
   ///
   /// The return value is an unsigned integer.
   ///
   /// You may optionally specify the beginning CRC value.
-  static int compute(var input, [int crc = 0]) {
-    if (input == null) throw new ArgumentError.notNull('input');
-    if (input is String) input = UTF8.encode(input);
-    if (crc == null) crc = 0;
-
+  static int compute(List<int> bytes, [int crc = 0]) {
     crc = crc ^ (0xffffffff);
 
-    for (var byte in input) {
+    for (final byte in bytes) {
       if (!(byte >= -128 && byte <= 255)) throw new FormatException(
-          "Invalid value in input: $byte");
+          'Invalid value in input: $byte');
 
       var x = CRC32._table[(crc ^ byte) & 0xff];
       crc = (crc & 0xffffffff) >> 8; // crc >>> 8 (32-bit unsigned integer)
